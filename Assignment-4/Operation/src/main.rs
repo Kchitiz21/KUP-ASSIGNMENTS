@@ -1,66 +1,65 @@
-// Main function
-
+struct Complex {
+    real: f64,
+    img: f64,
+}
 fn main() {
-    let numbers = Numbers {
-        first_number: 30,
-        second_number: 50,
-
+    // Initializing complex_1
+    let complex_1 = Complex {
+        real: 2.0,
+        img: 3.0,
     };
-    // Numbers Structure
-    
-    struct Numbers {
-        first_number: u32,
-        second_number: u32,
-    }
-    
-    // Implmenting Numbers Structure
-    
-    impl Numbers {
-        
-        
-     //Function "add" adds numbers using structures to function
-     // #Arguments
-    //
-    // Instance of the Structure Number
-    //
-    // #Return
-    //
-    // Returns addition of the two numbers
-        
-        fn add(&self) -> u32 {
-            self.first_number + self.second_number
+    // Initializing complex_2
+    let complex_2 = Complex {
+        real: 3.0,
+        img: 2.0,
+    };
+    add(&complex_1, &complex_2);
+    subtract(&complex_1, &complex_2);
+    multiply(&complex_1, &complex_2);
+}
+/// Function 'add' adds two  complex numbers using structures to function
+///
+/// #Arguments
+///
+/// Reference of two complex number
+///
+/// #Return
+///
+/// No return
+fn add(complex_1: &Complex, complex_2: &Complex) {
+    let real_part = complex_1.real + complex_2.real;
+    let imaginary_part = complex_1.img + complex_2.img;
+    println!("Sum is: {} + {}i", real_part, imaginary_part);
+}
+/// Function 'subtract' subtracts two complex numbers using structures to function
+///
+/// #Arguments
+///
+/// Reference of two complex number
+///
+/// #Return
+///
+/// No return
+fn subtract(complex_1: &Complex, complex_2: &Complex) {
+    let real_part = complex_1.real - complex_2.real;
+    let imaginary_part = complex_1.img - complex_2.img;
+    println!("Difference is: {} + {}i", real_part, imaginary_part);
+}
+/// Function 'multiply' multiplies two complex numbers using structures to function
+///
+/// #Arguments
+///
+/// Reference of two complex number
+///
+/// #Return
+///
+/// No return
+fn multiply(complex_1: &Complex, complex_2: &Complex) {
+    let product_1 = complex_1.real * complex_2.real;
+    let product_2 = complex_1.img * complex_2.img;
+    let product_3 = (complex_1.real + complex_1.img) * (complex_2.real + complex_2.img);
+    let real_part = product_1 - product_2;
+    let imaginary_part = product_3 - (product_1 + product_2);
 
-        }
-        
-    // Function "subtract" substract numbers using structures to function
-    //
-    // #Arguments
-    //
-    // Instance of the Structure Number
-    //
-    // #Return
-    //
-    // Returns subtraction of the two numbers
-        
-        fn subtract(&self) -> u32 {
-            if self.first_number > self.second_number {
-                self.first_number - self.second_number
-            } else {
-                self.second_number - self.first_number
-            }
-        }
-        
-    // Function "multiply" multiplies numbers using structures to function
-    //
-    // #Arguments
-    //
-    // Instance of the Structure Number
-    //
-    // #Return
-    //
-    // Returns product of the two numbers
-        fn multiply(&self) -> u32 {
-            self.first_number * self.second_number
-        }
-    }
+    println!("Product is: {} + {}i", real_part, imaginary_part);
 }
