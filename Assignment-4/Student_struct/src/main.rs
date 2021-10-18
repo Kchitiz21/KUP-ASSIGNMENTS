@@ -1,3 +1,4 @@
+// Student Structure
 struct Student {
     name: String,
     roll_no: i32,
@@ -5,14 +6,22 @@ struct Student {
     department: String,
     school: String,
 }
-
+// Score Structure
 struct Score {
     hindi: f32,
     english: f32,
     maths: f32,
     science: f32,
 }
-
+// Function "new" initializes Student objects
+//
+// #Arguments
+//
+// Student Structure
+//
+// #Return
+//
+// Return the Student type objects
 fn new(){
     let student1 = Student {
         name: String::from("Kchitiz"),
@@ -29,11 +38,28 @@ fn new(){
         school: String::from("AEC"),
     };
 }
-
+// Function "get_average" is to get average of all scores
+//
+// #Arguments
+//
+// Score Structure
+//
+// #Return
+//
+// Return the average of marks
 fn get_average(avg: &Score) -> f32{
     let avg: f32 = (avg.hindi + avg.english + avg.maths + avg.science) / 4.0;
     avg
 }
+// Function "pass_student" add numbers to student's score if score < 35
+//
+// #Arguments
+//
+// Score Structure
+//
+// #Return
+//
+// Return the array of new scores stored in it
 
 fn pass_student(marks: &Score) -> [f32; 4]{
     let mut arr: [f32; 4] = [marks.hindi, marks.english, marks.maths, marks.science];
@@ -62,6 +88,16 @@ fn pass_student(marks: &Score) -> [f32; 4]{
 }
 
 impl Score {
+     // Function "compare_student" is to print difference of each subject's score b/w students
+    //
+    // #Arguments
+    //
+    // Score Structure
+    //
+    // #Return
+    //
+    // No Return
+    
     fn compare(&self, other: &Score) {
         if self.hindi >= other.hindi {
             println!("Student_1 has higher marks in Hindi by: {}", self.hindi - other.hindi);
@@ -93,14 +129,17 @@ impl Score {
 
     }
 }
+// Main function
 
 fn main() {
+     // Specifying scores of student1
     let mut student1_score = Score {
         hindi: 32.0,
         english: 72.0,
         maths: 88.0,
         science: 83.0,
     };
+     // Specifying scores of student2
 
     let mut student2_score = Score {
         hindi: 18.0,
