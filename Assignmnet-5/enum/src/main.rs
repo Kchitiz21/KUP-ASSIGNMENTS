@@ -1,7 +1,7 @@
 ///enum 'IpAddress' which have variants for classes of ipaddress
 
 #[derive(PartialEq, Eq, Debug)]
-pub enum IpAddress {
+enum IpAddress {
     ClassA(String),
     ClassB(String),
     ClassC(String),
@@ -18,7 +18,7 @@ pub enum IpAddress {
 /// #Return
 ///
 /// Returns Result enum which used give the Class Of Ip
-pub fn check_ip(ip: (u128, u128, u128, u128)) {
+fn check_ip(ip: (u128, u128, u128, u128)) {
     match ip {
         (1..=126, 0..=255, 0..=255, 1..=254) => {
             println!("IpAddress::ClassA({}.{}.{}.{})", ip.0, ip.1, ip.2, ip.3)
