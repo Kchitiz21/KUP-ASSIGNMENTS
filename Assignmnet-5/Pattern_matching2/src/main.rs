@@ -1,64 +1,70 @@
 #[derive(PartialEq, Eq, Debug)]
-/// Passing coordinate.
+///enum Coordinate
+///
 enum Coordinate {
     Abscissa(i32),
     Ordinate(i32),
 }
-#[derive(PartialEq, Eq, Debug)]
-/// enum Position.
-enum Positions {
-    Origin(Coordinate, Coordinate),
+
+///enum Position which used to describe the Position of Quadrant
+///
+enum Position {
     First(Coordinate, Coordinate),
     Second(Coordinate, Coordinate),
     Third(Coordinate, Coordinate),
     Fourth(Coordinate, Coordinate),
+    XAxis(Coordinate, Coordinate),
+    YAxis(Coordinate, Coordinate),
+    Origin(Coordinate, Coordinate),
 }
-/// This method shows the Quadrant Position.
+
+/// Function 'check_coordinate' is used check the Quadrant of the given point
 ///
 /// #Arguments
 ///
-/// Checking the Position.
+/// point: A point is tuple object of integer type
 ///
 /// #Return
 ///
-/// Returns positions lies on which quadrant.
-fn quadrant_positions(point: (i32, i32)) {
-    match point {
-        (x_axis, y_axis) if x_axis == 0 && y_axis == 0 => println!(
-            "Position::Origin(Coordinate::Abscissa({}),Coordinate::Ordinate({}))",
-            x_axis, y_axis
-        ),
-        (x_axis, y_axis) if x_axis > 0 && y_axis > 0 => println!(
+/// Returns the Position lied point
+fn check_coordinate((point_1, point_2): (i32, i32)) {
+    match (point_1, point_2) {
+        (point_1, point_2) if point_1 > 0 && point_2 > 0 => println!(
             "Position::First(Coordinate::Abscissa({}),Coordinate::Ordinate({}))",
-            x_axis, y_axis
+            point_1, point_2
         ),
-        (x_axis, y_axis) if x_axis < 0 && y_axis > 0 => println!(
-            "Position::Second(Coordinate::Abscissa({}),Coordinate::Ordinate({}))",
-            x_axis, y_axis
+        (point_1, point_2) if point_1 < 0 && point_2 > 0 => println!(
+            "Position::First(Coordinate::Abscissa({}),Coordinate::Ordinate({}))",
+            point_1, point_2
         ),
-        (x_axis, y_axis) if x_axis < 0 && y_axis < 0 => println!(
+        (point_1, point_2) if point_1 < 0 && point_2 < 0 => println!(
             "Position::Third(Coordinate::Abscissa({}),Coordinate::Ordinate({}))",
-            x_axis, y_axis
+            point_1, point_2
         ),
-        (x_axis, y_axis) if x_axis > 0 && y_axis < 0 => println!(
+        (point_1, point_2) if point_1 > 0 && point_2 < 0 => println!(
             "Position::Fourth(Coordinate::Abscissa({}),Coordinate::Ordinate({}))",
-            x_axis, y_axis
+            point_1, point_2
         ),
-        _ => println!("Incorrect"),
+        (point_1, point_2) if point_1 == 0 && point_2 != 0 => println!(
+            "Position::YAxis(Coordinate::Abscissa({}),Coordinate::Ordinate({}))",
+            point_1, point_2
+        ),
+        (point_1, point_2) if point_1 != 0 && point_2 == 0 => println!(
+            "Position::XAxis(Coordinate::Abscissa({}),Coordinate::Ordinate({}))",
+            point_1, point_2
+        ),
+        (point_1, point_2) if point_1 == 0 && point_2 == 0 => println!(
+            "Position::Origin(Coordinate::Abscissa({}),Coordinate::Ordinate({}))",
+            point_1, point_2
+        ),
+        _ => println!("Wrong input"),
     }
 }
-/// This main method print the Coordinate numbers.
-///
-/// #Arguments
-///
-/// Find the Quadrant.
-///
-/// #Return
-///
-/// Returns successfully print quadrant position.
+
+/// Function main
 fn main() {
-    let check_position = (2, -2);
-    let check_position2 = (-1, -2);
-    quadrant_positions(check_position);
-    quadrant_positions(check_position2);
+    let first_point = (-2, -2);
+    let second_point = (0, 0);
+    check_coordinate(first_point);
+    check_coordinate(second_point);
 }
