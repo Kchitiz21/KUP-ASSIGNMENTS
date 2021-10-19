@@ -1,62 +1,48 @@
+///enum 'IpAddress' which have variants for classes of ipaddress
+
 #[derive(PartialEq, Eq, Debug)]
-/// Passing Ip Class Name.
-enum Ip {
-    ClassA(usize),
-    ClassB(usize),
-    ClassC(usize),
-    ClassD(usize),
-    ClassE(usize),
+pub enum IpAddress {
+    ClassA(String),
+    ClassB(String),
+    ClassC(String),
+    ClassD(String),
+    ClassE(String),
 }
-/// List method shows the Ip format.
+
+/// function 'check_ip' which is used check the given ip_Address
 ///
 /// #Arguments
 ///
-/// Checking the Position.
+/// ip: is tuple object of unsigned integer type
 ///
 /// #Return
 ///
-/// Returns Correct Ip Position.
-fn list(position: (usize, usize, usize, usize)) {
-    match position {
-        (1..=126, 0..=255, 0..=255, 1..=254) => println!(
-            "Ip::ClassA({}.{}.{}.{})",
-            position.0, position.1, position.2, position.3
-        ),
-        (128..=191, 0..=255, 0..=255, 1..=254) => println!(
-            "Ip::ClassB({}.{}.{}.{})",
-            position.0, position.1, position.2, position.3
-        ),
-        (192..=223, 0..=255, 1..=254, 1..=254) => println!(
-            "Ip::ClassC({}.{}.{}.{})",
-            position.0, position.1, position.2, position.3
-        ),
-        (224..=239, 0..=255, 0..=255, 0..=255) => println!(
-            "Ip::ClassD({}.{}.{}.{})",
-            position.0, position.1, position.2, position.3
-        ),
-        (240..=254, 0..=255, 0..=255, 0..=254) => println!(
-            "Ip::ClassE({}.{}.{}.{})",
-            position.0, position.1, position.2, position.3
-        ),
-        _ => println!("Incorrect Number"),
+/// Returns Result enum which used give the Class Of Ip
+pub fn check_ip(ip: (u128, u128, u128, u128)) {
+    match ip {
+        (1..=126, 0..=255, 0..=255, 1..=254) => {
+            println!("IpAddress::ClassA({}.{}.{}.{})", ip.0, ip.1, ip.2, ip.3)
+        }
+        (128..=191, 0..=255, 0..=255, 1..=254) => {
+            println!("IpAddress::ClassB({}.{}.{}.{})", ip.0, ip.1, ip.2, ip.3)
+        }
+        (192..=223, 0..=255, 1..=254, 1..=254) => {
+            println!("IpAddress::ClassC({}.{}.{}.{})", ip.0, ip.1, ip.2, ip.3)
+        }
+        (224..=239, 0..=255, 0..=255, 0..=255) => {
+            println!("IpAddress::ClassD({}.{}.{}.{})", ip.0, ip.1, ip.2, ip.3)
+        }
+        (240..=254, 0..=255, 0..=255, 0..=254) => {
+            println!("IpAddress::ClassE({}.{}.{}.{})", ip.0, ip.1, ip.2, ip.3)
+        }
+        _ => println!("Unwanted Input"),
     }
 }
-/// Main method print the Ip-Address.
-///
-/// #Arguments
-///
-/// Find the Ip number.
-///
-/// #Return
-///
-/// Returns successfully print Ip number.
+/// main method to initializing and calling variables
+
 fn main() {
-    let address_1 = (192, 0, 1, 1);
-    list(address_1);
-    let address_2 = (230, 45, 6, 7);
-    list(address_2);
-    let address_3 = (170, 45, 23, 45);
-    list(address_3);
-    let address_4 = (198, 5, 6, 4);
-    list(address_4);
+    let ip_1 = (10, 17, 89, 1);
+    check_ip(ip_1);
+    let ip_2 = (192, 168, 31, 1);
+    check_ip(ip_2);
 }
